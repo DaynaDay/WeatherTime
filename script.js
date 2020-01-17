@@ -1,10 +1,9 @@
 
 
 var APIKey = "605656e79789a6155a7e3a9a62bea17c"
-var searchName = $(".city").val();
 
 var queryURL = "https://api.openweathermap.org/data/2.5/weather?" +
-  "q=Paris,France" + searchName + "&units=imperial&appid=" + APIKey;
+  "q=Paris,France" + "&units=imperial&appid=" + APIKey;
 + APIKey;
 
 $.ajax({
@@ -32,11 +31,12 @@ $("#submitBtn").on("click", function (event) {
 });
 
 
+
 /////////////////////////////////////////////
 
 
 
-var queryURL = "api.openweathermap.org/data/2.5/forecast?" + APIKey
+var queryURL = "api.openweathermap.org/data/2.5/forecast?" +  "&units=imperial&appid=" + APIKey
 
 $.ajax({
   url: queryURL,
@@ -46,20 +46,24 @@ $.ajax({
 .then(function (display) {
   console.log(queryURL);
   console.log(display);
-  $(".city").text(response.name + " ");
-    $(".humidity").text("Humidity: " + response.main.humidity);
-    $(".temp").text("Temperature (F) " + response.main.temp);
+  $(".date").text(display.date + " ");
+    $(".humid").text("Humidity: " + display.main.humidity);
+    $(".temper").text("Temperature (F) " + display.main.temp);
 
-    var tempF = (response.main.temp - 273.15) * 1.80 + 32;
+    var tempF = (display.main.temp - 273.15) * 1.80 + 32;
     $(".tempF").text("Temperature (Kelvin) " + tempF);
 
-var weatherResponse=".then()"
+});
+
+var weatherResponse=".then()";
+
 var fiveDayArr = weatherResponse.list.filter(function(weatherObj) {
+  for (var i= 0; i < fiveDayArr.length; i ++);
   if (weatherObj.dt_txt.includes('06:00:00')) {
     return true;
   }
   else {
     return false;
   };
-});
+
 });
